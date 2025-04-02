@@ -1,0 +1,99 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Container geral com vibe de app */
+body {
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background-color: #eaeaea;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Logo redondinha e centralizada */
+.logo {
+  display: block;
+  width: 120px;
+  margin: 20px auto 10px auto;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  font-size: 1.7rem;
+  text-align: center;
+  color: #111;
+  margin-bottom: 20px;
+}
+
+/* Estilo do formulário com visual de app */
+form {
+  background: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  width: 95%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 30px;
+}
+
+/* Rótulos e campos */
+label {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+select,
+input[type="number"] {
+  padding: 14px;
+  font-size: 1rem;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  background-color: #fafafa;
+}
+
+/* Botão principal */
+button {
+  padding: 16px;
+  background-color: #111;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #333;
+}
+
+/* Responsividade mobile */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .logo {
+    width: 90px;
+  }
+
+  form {
+    padding: 16px;
+    gap: 14px;
+  }
+
+  label {
+    font-size: 0.95rem;
+  }
+}

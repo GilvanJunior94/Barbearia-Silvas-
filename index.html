@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Barbearia Silvas</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <img
+      src="img/BarbeariaSilvas.jpg"
+      alt="Logo Barbearia Silvas"
+      class="logo"
+    />
+    <h1>Barbearia Silvas</h1>
+    <form>
+      <label for="barbeiro">Barbeiro:</label>
+      <select id="barbeiro">
+        <option value="">Selecione...</option>
+        <option>Gilvan Junior</option>
+        <option>Johnantan Oliveira</option>
+      </select>
+
+      <label for="produto">Produto:</label>
+      <select id="produto">
+        <option value="">Nenhum</option>
+        <option>Gel</option>
+        <option>Pomada</option>
+        <option>Minoxidil</option>
+      </select>
+
+      <label for="servico">Serviço:</label>
+      <select id="servico">
+        <option value="">Nenhum</option>
+        <option>Corte</option>
+        <option>Barba</option>
+        <option>Combo</option>
+        <option>Pezinho</option>
+        <option>Sobrancelhas</option>
+      </select>
+
+      <label for="quimica">Química:</label>
+      <select id="quimica">
+        <option value="">Nenhum</option>
+        <option>Luzes</option>
+        <option>Progressiva</option>
+        <option>Botox</option>
+        <option>Platinado</option>
+        <option>Alisante</option>
+      </select>
+
+      <label for="quantidade">Valor:</label>
+      <input type="number" id="quantidade" value="1" min="1" />
+
+      <label for="pagamento">Forma de Pagamento:</label>
+      <select id="pagamento">
+        <option value="">Selecione...</option>
+        <option>Pix</option>
+        <option>Dinheiro</option>
+        <option>Cartão de Crédito</option>
+        <option>Cartão de Débito</option>
+      </select>
+
+      <button type="submit">Registrar Atendimento</button>
+    </form>
+  </body>
+</html>
