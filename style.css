@@ -8,8 +8,8 @@
 /* Container geral com vibe de app */
 body {
   font-family: "Segoe UI", Tahoma, sans-serif;
-  background-color: #eaeaea;
-  color: #333;
+  background-color: #000000;
+  color: #000000;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -22,13 +22,13 @@ body {
   width: 120px;
   margin: 20px auto 10px auto;
   border-radius: 50%;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.168);
 }
 
 h1 {
   font-size: 1.7rem;
   text-align: center;
-  color: #111;
+  color: #ffffffb9;
   margin-bottom: 20px;
 }
 
@@ -65,7 +65,7 @@ input[type="number"] {
 button {
   padding: 16px;
   background-color: #111;
-  color: white;
+  color: rgb(255, 255, 255);
   font-size: 1.1rem;
   font-weight: bold;
   border: none;
