@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
       servico: {
         Corte: 40,
         Barba: 35,
-        Combo: 45,
+        Combo: 65,
         Pezinho: 15,
         Sobrancelhas: 15,
       },
