@@ -9,13 +9,14 @@ document.addEventListener("DOMContentLoaded", function () {
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    const barbeiro = document.getElementById("barbeiro").value;
-    const produto = document.getElementById("produto").value;
-    const servico = document.getElementById("servico").value;
-    const quimica = document.getElementById("quimica").value;
+    const barbeiro =
+      document.getElementById("barbeiro")?.value || "Não informado";
+    const produto = document.getElementById("produto")?.value || "";
+    const servico = document.getElementById("servico")?.value || "";
+    const quimica = document.getElementById("quimica")?.value || "";
     const valorExtra =
-      parseFloat(document.getElementById("quantidade").value) || 0;
-    const pagamento = document.getElementById("pagamento").value;
+      parseFloat(document.getElementById("quantidade")?.value) || 0;
+    const pagamento = document.getElementById("pagamento")?.value || "Dinheiro";
 
     const precos = {
       produto: {
@@ -67,34 +68,36 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
     // Envia para a planilha
-    fetch(
-      "https://script.google.com/macros/s/AKfycbxYv1HWEoS9_rRqv7MyvEDFhRL-kHr_03pQ6fOrfGTPg0Ba7wnzSNVukf0ywQ_IC20Jtg/exec",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          barbeiro,
-          produto,
-          servico,
-          quimica,
-          pagamento,
-          totalBruto: total.toFixed(2),
-          desconto: desconto.toFixed(2),
-          totalFinal: totalFinal.toFixed(2),
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
+    fetch("https://api.sheetmonkey.io/form/sddpkjp1AykkWyshkXzEuh", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        barbeiro,
+        produto,
+        servico,
+        quimica,
+        pagamento,
+        totalBruto: total.toFixed(2),
+        desconto: desconto.toFixed(2),
+        totalFinal: totalFinal.toFixed(2),
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
       .then((res) => res.text())
       .then((msg) => console.log("Salvo na planilha:", msg))
       .catch((err) => console.error("Erro ao salvar:", err));
   });
 });
 
+// Base URL correta
 const baseURL =
   "https://script.google.com/macros/s/AKfycbxYv1HWEoS9_rRqv7MyvEDFhRL-kHr_03pQ6fOrfGTPg0Ba7wnzSNVukf0ywQ_IC20Jtg/exec";
 
+// Todas as funções usam "?aba=NomeDaAba" corretamente agora:
 function carregarServicos() {
   fetch(baseURL + "?aba=Serviços")
     .then((res) => res.json())
@@ -159,5 +162,32 @@ function carregarBarbeiros() {
         option.textContent = nome;
         select.appendChild(option);
       });
+      function doPost(e) {
+        try {
+          const dados = JSON.parse(e.postData.contents);
+
+          const sheet =
+            SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Registros"); // ou o nome da aba que você usa
+          sheet.appendRow([
+            new Date(),
+            dados.barbeiro,
+            dados.produto,
+            dados.servico,
+            dados.quimica,
+            dados.pagamento,
+            dados.totalBruto,
+            dados.desconto,
+            dados.totalFinal,
+          ]);
+
+          return ContentService.createTextOutput("Salvo com sucesso!")
+            .setMimeType(ContentService.MimeType.TEXT)
+            .setHeader("Access-Control-Allow-Origin", "*"); // liberação do CORS
+        } catch (err) {
+          return ContentService.createTextOutput("Erro ao salvar: " + err)
+            .setMimeType(ContentService.MimeType.TEXT)
+            .setHeader("Access-Control-Allow-Origin", "*");
+        }
+      }
     });
 }
